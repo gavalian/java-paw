@@ -1,0 +1,7 @@
+// Starting with vectors
+// Source: ../../tut.pdf, PDF page 9 (viewer page, not printed footer).
+// Adaptation: Original tutorial vector values; Java arrays and GRAPH use Twig GraphErrors.
+paw.cd("vectors"); paw.zones(1,2);
+double[] v={10,8,6,4,2,3,5,7,9,11};paw.vector("vect1",v);paw.command("V/DRAW vect1 10");
+double[] x=paw.array(20,1,20),y={1.1,3.2,5.3,7.4,7.5,6.6,4.3,2.1,6.6,11.1,16.2,18.3,19,17.8,16,12.1,9.1,6.1,3.1,6.6};
+paw.zone(2);paw.plot(paw.graph("graph",x,y),"LP",false);

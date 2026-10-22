@@ -1,0 +1,7 @@
+// Vector operations
+// Source: ../../tut.pdf, PDF page 17 (viewer page, not printed footer).
+// Adaptation: Java syntax replaces KUIP/COMIS; Twig objects are plotted in the workstation.
+paw.cd("vector_operations");paw.zones(2,2);paw.vector("vect1",new double[]{1,2,3,4,5,5,4,3,2,1});
+paw.command("V/DRAW vect1 original");paw.zone(2);paw.command("VSCALE vect1 .5 half");paw.command("V/DRAW half half");
+paw.zone(3);paw.command("VSCALE vect1 .25 quarter");paw.command("V/DRAW quarter quarter");
+paw.zone(4);paw.command("VSUBTR half quarter difference");paw.command("V/DRAW difference difference");

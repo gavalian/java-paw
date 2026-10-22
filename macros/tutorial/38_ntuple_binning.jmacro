@@ -1,0 +1,4 @@
+// Automatic and user binning
+// Source: ../../tut.pdf, PDF page 91 (viewer page, not printed footer).
+// Adaptation: Automatic finite ranges and sqrt(N) bins; explicit user booking and accumulated projection; Twig major ticks replace NDIV encoding.
+paw.cd("ntuple_binning");paw.zones(2,2);TutorialTable t=paw.staff();paw.plot(paw.keep("auto_age",t.auto("auto_age","Age")));paw.zone(2);paw.plot(paw.keep("user_age",t.project("user_age","Age",45,20,65)));paw.configure(r->r.axisX().getAttributes().setAxisTickMarkCount(9));paw.zone(3);paw.plot(paw.keep("auto_cost",t.auto("auto_cost","Cost")));paw.zone(4);H1F cost=paw.h1("user_cost","Cost — user binning",50,0,20000);t.fill(cost,"Cost");paw.plot(cost);paw.configure(r->r.axisX().getAttributes().setAxisTickMarkCount(4));

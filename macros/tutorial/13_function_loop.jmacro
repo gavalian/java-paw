@@ -1,0 +1,6 @@
+// Plot a one-dimensional function and loop
+// Source: ../../tut.pdf, PDF page 33 (viewer page, not printed footer).
+// Adaptation: Original loop formulas; optional integer argument defaults to 8; Java loop replaces KUIP substitution.
+paw.cd("function_loop");paw.zones(1,1);int count=paw.integerArgument(0,8);if(count<1||count>50)throw new IllegalArgumentException("Plot count 1..50");double[] x=paw.array(401,-10,10);
+for(int i=count;i>=1;i--){final double scale=(double)i/count;GraphErrors a=paw.graph("sin"+i,x,paw.map(x,z->z*sin(z)*scale)),b=paw.graph("cos"+i,x,paw.map(x,z->z*cos(z)*sin(z)*scale));a.attr().setLineColor(2);b.attr().setLineColor(4);paw.plot(a,"L",i!=count);paw.plot(b,"L",true);}
+paw.configure(r->{r.axisX().getAttributes().setAxisTickMarkSize(0);r.axisY().getAttributes().setAxisTickMarkSize(0);});

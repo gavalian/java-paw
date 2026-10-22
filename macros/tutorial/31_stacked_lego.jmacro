@@ -1,0 +1,5 @@
+// Stacked Lego plots
+// Source: ../../tut.pdf, PDF page 71 (viewer page, not printed footer).
+// Adaptation: Submatrix heights are added bin by bin; cumulative LEGO and heatmap replace individually colored HIGZ stack layers.
+paw.cd("stacked_lego");paw.zones(2,2);H2F h=paw.peaks2("200"),a=paw.crop(h,1,12,1,12,"a"),b=paw.crop(h,14,25,14,25,"b");paw.widget(new TutorialGraphics(a,"LEGO"),true);paw.zone(2);paw.widget(new TutorialGraphics(b,"LEGO"),true);
+H2F sum=paw.h2("stack",12,0,1,12,0,1);for(int x=0;x<12;x++)for(int y=0;y<12;y++)sum.setBinContent(x,y,a.getBinContent(x,y)+b.getBinContent(x,y));paw.zone(3);paw.widget(new TutorialGraphics(sum,"LEGO"),true);paw.zone(4);paw.plot(sum);

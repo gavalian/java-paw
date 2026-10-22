@@ -1,0 +1,18 @@
+// PAW Ntuple commands backed by HIPO; run with MACRO/EXEC 'macros/ntuple_demo.jmacro'.
+paw.command("CD //PAWC");
+paw.command("NT/CREATE 100 'HIPO Ntuple demonstration' 4 ! ! X Y Z W");
+Random sample = new Random(100);
+for (int i=0; i<2000; i++) {
+    double x=sample.nextGaussian(), y=.7*x+.5*sample.nextGaussian();
+    paw.fillNtuple("100", x, y, sample.nextGaussian(), Math.abs(x)+.2);
+}
+paw.command("ZONE 2 2");
+paw.command("NT/CUTS $1 'ABS(X)<2'");
+paw.command("NT/PLOT 100.X W ! ! ! ! 201");
+paw.command("NT/PLOT 100.Y%X $1 ! ! ! ! 202");
+paw.command("NT/PLOT 100.Y%X 1 ! ! ! PROF 203");
+paw.command("NT/PLOT 100.Y%X%Z%W $1");
+Path output=paw.output("ntuple_demo.hipo");
+paw.command("WORKSPACE/SAVE " + Commands.quote(output.toString()));
+paw.command("NT/PRINT 100");
+paw.print("Saved HIPO Ntuple and histograms: " + output);

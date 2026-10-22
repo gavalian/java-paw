@@ -1,0 +1,5 @@
+// PostScript output
+// Source: ../../tut.pdf, PDF page 137 (viewer page, not printed footer).
+// Adaptation: Twig renders PNG and vector PDF; PS/EPS preserve a raster of the canvas rather than HIGZ vector primitives. Page size follows canvas geometry.
+paw.cd("postscript_output");paw.zones(1,2);paw.plot(paw.peaks("110",5000),"EP",false);paw.zone(2);paw.widget(new TutorialGraphics(paw.peaks2("200"),"CONTOUR"),true);
+paw.export(paw.output("tutorial.png"));paw.export(paw.output("tutorial.pdf"));paw.export(paw.output("tutorial.ps"));paw.export(paw.output("tutorial.eps"));paw.print("Wrote PNG, vector PDF and raster PostScript/EPS.");

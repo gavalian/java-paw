@@ -1,0 +1,4 @@
+// Copy a Ntuple variable into a Vector
+// Source: ../../tut.pdf, PDF page 111 (viewer page, not printed footer).
+// Adaptation: Copies every synthetic HIPO-style row age into a KUIP-compatible 1D vector; no COMIS callback required.
+paw.cd("ntuple_to_vector");paw.zones(1,2);TutorialTable t=paw.staff();paw.vector("age",t.column("Age"));paw.command("V/DRAW age indexed");paw.zone(2);paw.command("V/PLOT age distribution");

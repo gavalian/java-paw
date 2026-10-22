@@ -1,0 +1,7 @@
+// VECTOR/READ with the MATCH option
+// Source: ../../tut.pdf, PDF page 27 (viewer page, not printed footer).
+// Adaptation: Tutorial MATCH prefix and numeric columns; Java reads checked-in ASCII fixture.
+paw.cd("vector_read_match");paw.zones(1,1);List<String> lines=Files.readAllLines(paw.file("data/match.dat"));List<double[]> rows=new ArrayList<>();
+for(String line:lines)if(line.startsWith("Data")){String[] words=line.split("\\s+");rows.add(new double[]{Double.parseDouble(words[1]),Double.parseDouble(words[2]),Double.parseDouble(words[3])});}
+for(int col=0;col<3;col++){final int c=col;double[] values=rows.stream().mapToDouble(r->r[c]).toArray();GraphErrors g=paw.graph("matched"+col,paw.array(values.length,1,values.length),values);g.attr().setLineColor(col+2);paw.plot(g,"LP",col>0);}
+paw.print("Matched "+rows.size()+" Data-prefix rows; other lines ignored.");

@@ -1,0 +1,5 @@
+// Read histograms from file and plot
+// Source: ../../tut.pdf, PDF page 47 (viewer page, not printed footer).
+// Adaptation: Creates its own HIPO prerequisite, reads it back, lists objects and deletes an in-memory object.
+paw.cd("histogram_file_read");paw.zones(1,1);Workspace archive=new Workspace();archive.put("110",paw.peaks("110",5000));archive.put("200",paw.peaks2("200"));Path file=paw.output("read_example.hipo");archive.save(file);
+Workspace loaded=new Workspace();loaded.load(file);paw.print(loaded.objects().keySet());paw.plot(loaded.get("110"));loaded.delete("200");paw.print("After delete: "+loaded.objects().keySet());

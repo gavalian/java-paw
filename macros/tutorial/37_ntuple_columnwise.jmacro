@@ -1,0 +1,4 @@
+// Ntuple creation: column-wise
+// Source: ../../tut.pdf, PDF page 87 (viewer page, not printed footer).
+// Adaptation: HIPO typed columns replace CWN; numeric category codes replace character columns. HIPO is an event/bank format rather than HBOOK column-wise storage.
+paw.cd("ntuple_columnwise");paw.zones(1,2);TutorialTable table=paw.staff();Path file=paw.output("cwn_staff.hipo");table.writeTyped(file,Map.of("Age","I","Grade","I","Flag","B","Cost","F"));TutorialTable read=TutorialTable.read(file);read.scan(paw::print,5);paw.plot(paw.keep("age",read.auto("age","Age")));paw.zone(2);paw.plot(paw.keep("division",read.project("division","Division",13,.5,13.5)),"B",false);paw.registerNtuple(file);

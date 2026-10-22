@@ -1,0 +1,6 @@
+// Examples of the SIGMA processor (1)
+// Source: ../../tut.pdf, PDF page 123 (viewer page, not printed footer).
+// Adaptation: Exact SIGMA array formulas, with sinc(0)=1; Java doubles, Math and system APIs replace APPLICATION/$SIGMA/$RSIGMA and KUIP system-function syntax.
+paw.cd("sigma_1");paw.zones(2,2);double[] x=paw.array(200,0,2*PI);paw.plot(paw.graph("sin",x,paw.map(x,Math::sin)),"L",false);GraphErrors sinc=paw.graph("sinc",x,paw.map(x,z->z==0?1:sin(z)/z));sinc.attr().setLineStyle(2);paw.plot(sinc,"L",true);
+for(int i=0;i<3;i++){paw.zone(i+2);double[] xx=paw.array(300,0,new double[]{8,3,1}[i]);paw.plot(paw.graph("sigma"+i,xx,paw.map(xx,z->cosh(z)+sin(1/(.1+z*z)))),"L",false);}
+paw.print("Java scalar/system values: date="+java.time.LocalDate.now()+", bins="+paw.workspace.objects().size()+", vector length="+x.length);

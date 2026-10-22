@@ -1,0 +1,4 @@
+// Ntuple and 2D histograms: projections
+// Source: ../../tut.pdf, PDF page 109 (viewer page, not printed footer).
+// Adaptation: H2F X/Y projections, fixed-bin slices and band projection; note Twig sliceX fixes X and returns Y bins.
+paw.cd("histogram_projections");paw.zones(2,3);TutorialTable t=paw.staff();H2F h=paw.keep("20",t.project2("20","Grade","Step",12,3,15,16,0,16));paw.widget(new TutorialGraphics(h,"LEGO"),true);paw.zone(2);paw.plot(paw.keep("prox",h.projectionX()));paw.zone(3);paw.plot(paw.keep("proy",h.projectionY()));paw.zone(4);paw.plot(paw.keep("slix",h.sliceX(4)));paw.zone(5);paw.plot(paw.keep("sliy",h.sliceY(5)));paw.zone(6);H2F band=paw.crop(h,4,8,1,16,"band");paw.plot(paw.keep("bandy",band.projectionY()));

@@ -1,0 +1,6 @@
+// Histogram operations
+// Source: ../../tut.pdf, PDF page 55 (viewer page, not printed footer).
+// Adaptation: Scaled copies, arithmetic with error propagation, smoothing and HIPO output; the example avoids zero-denominator division.
+paw.cd("histogram_operations");paw.zones(2,2);H1F h=paw.peaks("110",5000);paw.plot(h,"EP",false);paw.zone(2);paw.plot(h,"LP",false);
+for(int i=0;i<2;i++){H1F copy=h.copy();double scale=i==0?.5:.25;for(int j=0;j<100;j++){copy.setBinContent(j,scale*h.getBinContent(j));copy.setBinError(j,scale*h.getBinError(j));}copy.attr().setLineColor(i+2);paw.keep("scaled"+i,copy);paw.zone(i+3);paw.plot(copy,"F",false);}
+paw.command("HISTOGRAM/ADD scaled0 scaled1 sum");paw.command("HISTOGRAM/SUB 110 scaled0 remainder");paw.command("HISTOGRAM/MUL scaled0 scaled1 product");paw.command("HISTOGRAM/SMOOTH 110 smoothed");paw.workspace.save(paw.output("operations.hipo"));

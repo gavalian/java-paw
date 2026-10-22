@@ -1,0 +1,4 @@
+// Another way of drawing errors for 2D histograms
+// Source: ../../tut.pdf, PDF page 77 (viewer page, not printed footer).
+// Adaptation: DERR.F is replaced with projected vertical z±sqrt(abs(z)) error bars over Twig H2F bins.
+paw.cd("errors_2d_bars");paw.zones(1,1);H2F h=paw.peaks2("200");paw.widget(new TutorialGraphics(h,"ERROR"),true);

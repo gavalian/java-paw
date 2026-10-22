@@ -1,0 +1,4 @@
+// Merging of hbook files
+// Source: ../../tut.pdf, PDF page 113 (viewer page, not printed footer).
+// Adaptation: HIPO ntuple rows concatenate; compatible histograms add with error propagation. Legacy HBOOK mixed-file merge is replaced by separate HIPO data/workspace operations.
+paw.cd("file_merging");paw.zones(1,2);TutorialTable original=paw.staff();Path a=paw.output("merge_a.hipo"),mergedFile=paw.output("merged.hipo");original.write(a);TutorialTable merged=TutorialTable.chain(List.of(a,a));merged.write(mergedFile);paw.print("Rows before="+original.size()+" after="+merged.size());paw.plot(paw.keep("age",merged.project("age","Age",45,20,65)));H1F h=original.project("counts","Age",45,20,65);paw.keep("a",h);paw.keep("b",h.copy());paw.zone(2);paw.plot(paw.workspace.arithmetic("a","b","sum","ADD"));

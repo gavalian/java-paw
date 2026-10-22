@@ -1,0 +1,24 @@
+# Based on paw.pdf printed p. 126: SET HCOL 1203 and the filled/outline encoding.
+# Also follows SET HCOL 1001 on printed p. 98. Analytic bin contents are supplied here.
+# 1=black outline; 4=blue outline; 1001=black fill; 1203=red border, green fill.
+CDIR //PAWC/book_colors
+SET HWID 2
+ZONE 2 2
+SIGMA color_x=array(80,-3.95#3.95)
+SIGMA color_bins=100*exp(-color_x^2/2)
+1D 1401 'HCOL comparison: identical bin contents' 80 -4 4
+H/PUT_VECTOR/CONTENT 1401 color_bins
+CD 1
+SET HCOL 1
+H/PLOT 1401
+CD 2
+SET HCOL 4
+H/PLOT 1401
+CD 3
+SET HCOL 1001
+H/PLOT 1401
+CD 4
+SET HCOL 1203
+H/PLOT 1401
+SET HCOL 1
+SET HWID 1

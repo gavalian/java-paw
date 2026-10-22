@@ -1,0 +1,5 @@
+// Examples of the SIGMA processor (2)
+// Source: ../../tut.pdf, PDF page 127 (viewer page, not printed footer).
+// Adaptation: Original damped function, nine ellipses and spiral formulas use Java arrays and Math.
+paw.cd("sigma_2");paw.zones(2,2);double[] x=paw.array(200,0,5);paw.plot(paw.graph("damped",x,paw.map(x,z->exp(-z)*sin(8*z)+.01*z*z)),"L",false);paw.zone(2);double[] a=paw.array(200,0,2*PI);boolean same=false;for(double xs:new double[]{1,.5,.25})for(double ys:new double[]{1,.5,.25}){paw.plot(paw.graph("ellipse"+xs+"_"+ys,paw.map(a,z->xs*sin(z)),paw.map(a,z->ys*cos(z))),"L",same);same=true;}
+for(int i=0;i<2;i++){paw.zone(i+3);double scale=i==0?1:2.55555;double[] angle=paw.array(100,0,59.77);paw.plot(paw.graph("spiral"+i,paw.map(angle,z->sin(z*scale)*z*scale),paw.map(angle,z->cos(z*scale)*z*scale)),"L",false);}

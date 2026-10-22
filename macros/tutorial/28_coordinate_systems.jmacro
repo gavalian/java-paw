@@ -1,0 +1,4 @@
+// Coordinate systems
+// Source: ../../tut.pdf, PDF page 65 (viewer page, not printed footer).
+// Adaptation: Normalized polar/cylindrical/spherical/pseudorapidity mappings; geometric projections replace legacy LEGO coordinate conventions.
+paw.cd("coordinate_systems");paw.zones(2,2);H2F h=paw.peaks2("200");String[] modes={"POL","CYL","SPH","PSD"};for(int i=0;i<4;i++){paw.zone(i+1);paw.widget(new TutorialGraphics(h,"SURFACE",null,null,modes[i],false,false,false),true);}

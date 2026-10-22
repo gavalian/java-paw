@@ -1,0 +1,35 @@
+# Adapted from paw.pdf printed p. 70: vector arithmetic and histogram/vector transfer.
+# Analytic signal and background values are supplied here to make the operations visible.
+CDIR //PAWC/book_operations
+SET HCOL 1
+SET HWID 2
+ZONE 2 2
+SIGMA operation_x=array(80,-3.95#3.95)
+SIGMA signal=100*exp(-operation_x^2/2)
+SIGMA background=array(80,10#10)
+VADD signal background total
+VSUBTR total background recovered
+1D 1501 'Signal plus background' 80 -4 4
+1D 1502 'Background' 80 -4 4
+1D 1503 'Recovered signal' 80 -4 4
+H/PUT_VECTOR/CONTENT 1501 total
+H/PUT_VECTOR/CONTENT 1502 background
+H/PUT_VECTOR/CONTENT 1503 recovered
+CD 1
+SET HCOL 4
+H/PLOT 1501
+CD 2
+SET HCOL 2
+H/PLOT 1502
+HISTOGRAM/SUB 1501 1502 1504
+CD 3
+SET HCOL 3
+H/PLOT 1504
+HISTOGRAM/REBIN 1504 1505 4
+CD 4
+SET HCOL 1004
+H/PLOT 1505
+H/GET_VECTOR/CONTENT 1505 rebinned_bins
+V/PRINT rebinned_bins(1:5)
+SET HCOL 1
+SET HWID 1

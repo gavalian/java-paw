@@ -1,0 +1,5 @@
+// Logarithmic scales on lego plots
+// Source: ../../tut.pdf, PDF page 67 (viewer page, not printed footer).
+// Adaptation: Positive axis endpoints and contents avoid undefined logs; independent X/Y/Z log transformations are displayed.
+paw.cd("logarithmic_lego");paw.zones(2,2);H2F h=paw.function2("positive",25,.01,1,25,.01,1,(x,y)->100*paw.htfun(x)*paw.htfun(y)+.01);
+for(int i=0;i<4;i++){paw.zone(i+1);paw.widget(new TutorialGraphics(h,"LEGO",null,null,"CARTESIAN",i==1,i==2,i==3),true);}

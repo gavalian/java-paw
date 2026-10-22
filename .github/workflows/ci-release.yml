@@ -1,0 +1,115 @@
+name: Build, test and release
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      tag: ${{ steps.package.outputs.tag }}
+    steps:
+      - name: Check out java-paw
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Read pinned j4np revision
+        id: j4np
+        run: echo "ref=$(cat scripts/j4np.ref)" >> "$GITHUB_OUTPUT"
+
+      - name: Download pinned j4np sources
+        uses: actions/checkout@v4
+        with:
+          repository: gavalian/j4np
+          ref: ${{ steps.j4np.outputs.ref }}
+          path: .deps/j4np
+          # A token with read access is required while j4np is private.
+          token: ${{ secrets.J4NP_READ_TOKEN || github.token }}
+          persist-credentials: false
+
+      - name: Build j4np packages
+        env:
+          J4NP_DIR: ${{ github.workspace }}/.deps/j4np
+        run: ./scripts/build-j4np.sh
+
+      - name: Test and build shaded application JAR
+        run: ./build.sh --batch-mode --no-transfer-progress clean verify
+
+      - name: Smoke test packaged JAR
+        run: |
+          java -Djava.awt.headless=true -jar target/paw-java-*.jar \
+            --motif --snapshot target/release-smoke.png
+          test -s target/release-smoke.png
+
+      - name: Prepare release files
+        id: package
+        shell: bash
+        run: |
+          version=$(mvn --batch-mode --no-transfer-progress help:evaluate -Dexpression=project.version -q -DforceStdout)
+          tag="v${version}-build.${GITHUB_RUN_NUMBER}"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          mkdir -p dist
+          cp "target/paw-java-${version}.jar" "dist/java-paw-${tag}.jar"
+          {
+            echo "java-paw commit: $GITHUB_SHA"
+            echo "j4np repository: https://github.com/gavalian/j4np"
+            echo "j4np commit: $(git -C .deps/j4np rev-parse HEAD)"
+            echo "Java runtime: JDK 21 or newer"
+          } > dist/build-info.txt
+          (cd dist && sha256sum ./*.jar > SHA256SUMS)
+
+      - name: Upload release files
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-paw-release
+          path: dist/
+          if-no-files-found: error
+
+  release:
+    # PRs only validate. Main pushes include merge, squash and rebase merges.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Download tested release files
+        uses: actions/download-artifact@v4
+        with:
+          name: java-paw-release
+          path: dist
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ needs.build.outputs.tag }}
+        shell: bash
+        run: |
+          # Rerunning a successful workflow must not create a duplicate release.
+          if gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists."
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" dist/* \
+            --target "$GITHUB_SHA" \
+            --title "java-paw $RELEASE_TAG" \
+            --notes-file dist/build-info.txt \
+            --generate-notes

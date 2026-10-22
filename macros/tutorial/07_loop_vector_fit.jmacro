@@ -1,0 +1,6 @@
+// Simple macro with loop and VECTOR fit
+// Source: ../../tut.pdf, PDF page 19 (viewer page, not printed footer).
+// Adaptation: Java loop and Twig/Minuit polynomial fits replace DO and VECTOR/FIT.
+paw.cd("loop_vector_fit");paw.zones(1,2);double[] x=paw.array(10,1,10);
+double[][] ys={{9.1,8.1,7.1,6.1,5.1,4.1,3.1,2.1,1.1,.1},{6.2,4.2,3.2,2.2,1.2,1.2,2.2,3.2,4.2,5.2}};
+for(int i=0;i<2;i++){paw.zone(i+1);GraphErrors g=paw.graph("data"+i,x,ys[i]);for(int j=0;j<10;j++)g.getVectorEY().set(j,.1);paw.plot(g,"EP",false);F1D fit=paw.fit(g,i==0?"[a]+[b]*x":"[a]+[b]*x+[c]*x*x",1,10,i==0?new double[]{10,-1}:new double[]{8,-2,.2});paw.plot(fit,"",true);}

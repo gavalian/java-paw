@@ -1,0 +1,5 @@
+// Ntuple creation: row-wise
+// Source: ../../tut.pdf, PDF page 85 (viewer page, not printed footer).
+// Adaptation: 3354 deterministic synthetic staff rows replace unavailable APTUPLE.DAT; all-double HIPO bank replaces RWN.
+paw.cd("ntuple_rowwise");paw.zones(1,2);TutorialTable table=paw.staff();Path file=paw.output("rwn_staff.hipo");table.write(file);TutorialTable read=TutorialTable.read(file);read.scan(paw::print,10);
+paw.plot(paw.keep("age",read.auto("age","Age")));paw.zone(2);paw.plot(paw.keep("division",read.project("division","Division",13,.5,13.5)),"B",false);paw.registerNtuple(file);

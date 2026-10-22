@@ -1,0 +1,4 @@
+// Graphical operations on histograms
+// Source: ../../tut.pdf, PDF page 129 (viewer page, not printed footer).
+// Adaptation: Overlay keeps existing graphics; summed histogram implements the visible result of PAW + without mutating the source.
+paw.cd("graphical_histogram_add");paw.zones(1,2);H1F h=paw.peaks("110",5000),half=h.copy();for(int i=0;i<100;i++){half.setBinContent(i,h.getBinContent(i)*.5);half.setBinError(i,h.getBinError(i)*.5);}paw.keep("half",half);paw.plot(h,"F",false);half.attr().setLineColor(4);paw.plot(half,"L",true);paw.zone(2);paw.plot(paw.workspace.arithmetic("110","half","added","ADD"),"F",false);

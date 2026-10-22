@@ -1,0 +1,5 @@
+// Simple selection criteria on Ntuple
+// Source: ../../tut.pdf, PDF page 93 (viewer page, not printed footer).
+// Adaptation: Original selection intent; numeric synthetic nation/division codes, Java expressions and transcript SCAN replace legacy aliases and character comparisons.
+paw.cd("ntuple_selection_scan");paw.zones(1,1);TutorialTable t=paw.staff(),fr=t.select("Nation==7"),ep=fr.select("Division==5");ep.scan(paw::print,10);
+TutorialTable[] selections={t,fr,ep};for(int i=0;i<3;i++){H1F h=paw.keep("selection"+i,selections[i].project("selection"+i,"Service",35,0,35));h.attr().setLineColor(i+2);paw.plot(h,"L",i>0);}paw.note("Synthetic codes: FR=7, EP=5");

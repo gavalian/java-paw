@@ -1,0 +1,5 @@
+// 3D functions drawing
+// Source: ../../tut.pdf, PDF page 41 (viewer page, not printed footer).
+// Adaptation: Exact unit sphere and progressively restricted positive ranges; sampled 3D points replace the legacy implicit-surface renderer.
+paw.cd("functions_3d");paw.zones(2,2);
+for(int range=0;range<4;range++){Graph3D g=new Graph3D();g.attr().setTitle("x²+y²+z²=1 / range "+range);for(int i=0;i<=50;i++)for(int j=0;j<100;j++){double theta=PI*i/50,phi=2*PI*j/100,x=sin(theta)*cos(phi),y=sin(theta)*sin(phi),z=cos(theta);if((range<1||x>=0)&&(range<2||y>=0)&&(range<3||z>=0))g.addPoint(x,y,z);}paw.zone(range+1);paw.widget(new TutorialGraphics(g),true);}

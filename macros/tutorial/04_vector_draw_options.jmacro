@@ -1,0 +1,6 @@
+// VECTOR/DRAW options
+// Source: ../../tut.pdf, PDF page 13 (viewer page, not printed footer).
+// Adaptation: Twig draw options replace PAW B/L/*/E; hatch codes and marker numbering use Twig conventions.
+paw.cd("vector_draw_options");paw.zones(2,3);double[] v={5,1,3,2,4,1,3,1,8,6};
+String[] options={"","B","L","LP","FLP","EP"};
+for(int i=0;i<6;i++){paw.zone(i+1);H1F h=paw.h1("mode"+i,options[i].isEmpty()?"Default":options[i],10,1,11);for(int j=0;j<v.length;j++){h.setBinContent(j,v[j]);h.setBinError(j,sqrt(v[j]));}h.attr().setFillColor(4);h.attr().setFillStyle(4);h.attr().setMarkerStyle(3);paw.plot(h,options[i],false);}

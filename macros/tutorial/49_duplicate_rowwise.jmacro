@@ -1,0 +1,4 @@
+// RW-Ntuple duplicated with selection
+// Source: ../../tut.pdf, PDF page 117 (viewer page, not printed footer).
+// Adaptation: Exact Children>=3 predicate; HIPO bank schema and selected rows replace NT/DUP and HFN.
+paw.cd("duplicate_rowwise");paw.zones(1,2);TutorialTable t=paw.staff(),subset=t.select("Children>=3");Path path=paw.output("subset_children.hipo");subset.write(path);paw.plot(paw.keep("all",t.project("all","Children",6,-.5,5.5)));paw.zone(2);paw.plot(paw.keep("subset",TutorialTable.read(path).project("subset","Children",6,-.5,5.5)));paw.print("Selected "+subset.size()+" of "+t.size());

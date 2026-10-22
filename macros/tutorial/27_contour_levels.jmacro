@@ -1,0 +1,4 @@
+// Non equidistant contour plots
+// Source: ../../tut.pdf, PDF page 63 (viewer page, not printed footer).
+// Adaptation: Exact contour levels; marching-squares lines replace HIGZ contour drawing. Annotation uses normalized coordinates.
+paw.cd("contour_levels");paw.zones(1,1);H2F h=paw.peaks2("200");double[] levels={10,11,12,13,14,15,90,99};paw.vector("level",levels);paw.widget(new TutorialGraphics(h,"CONTOUR",levels,null,"CARTESIAN",false,false,false),true);paw.note("Contours: 10, 11, 12, 13, 14, 15, 90, 99");

@@ -1,0 +1,2 @@
+paw.print("Nested macro PI="+paw.globals.get("PI"));
+paw.plot(paw.function1("global_sine",100,0,2*((Number)paw.globals.get("PI")).doubleValue(),Math::sin));

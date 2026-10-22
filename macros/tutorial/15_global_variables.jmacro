@@ -1,0 +1,5 @@
+// Global variables
+// Source: ../../tut.pdf, PDF page 36 (viewer page, not printed footer).
+// Adaptation: Session-wide map replaces GLOBAL/CREATE/LIST/DELETE; nested helper sees the same globals.
+paw.cd("global_variables");paw.zones(1,1);paw.globals.put("PI",3.14159);paw.globals.put("GV","Global variable text");paw.print(paw.globals);
+paw.exec("helpers/global_reader.jmacro");paw.globals.remove("GV");paw.print("After delete: "+paw.globals);

@@ -1,0 +1,7 @@
+// More on macro input parameters and return
+// Source: ../../tut.pdf, PDF page 35 (viewer page, not printed footer).
+// Adaptation: Java parameters, lambdas and return replace EXEC/READ/$RETURN; command arguments replace interactive prompts for batch execution.
+paw.cd("parameters_return");paw.zones(1,1);List<Integer> values=paw.arguments.isEmpty()?List.of(23,9,48):paw.arguments.stream().map(Integer::parseInt).toList();
+for(int value:values)paw.print("Square of "+value+" is "+value*value);
+IntUnaryOperator exit2=num->{if(num<=20)throw new IllegalArgumentException("NUM must be greater than 20");return num-20;};paw.print("Returned value: "+exit2.applyAsInt(25));
+paw.plot(paw.graph("squares",values.stream().mapToDouble(Integer::doubleValue).toArray(),values.stream().mapToDouble(v->v*v).toArray()),"P",false);

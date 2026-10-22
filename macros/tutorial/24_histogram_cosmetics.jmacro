@@ -1,0 +1,6 @@
+// Histogram operations: cosmetic modifications
+// Source: ../../tut.pdf, PDF page 57 (viewer page, not printed footer).
+// Adaptation: Twig fonts, hatch, line width, grid and annotation replace hardware-font and shadow attributes. Angled text uses a custom Twig widget.
+paw.cd("histogram_cosmetics");paw.zones(1,1);H1F h=paw.peaks("110",5000);h.attr().setLineWidth(4);h.attr().setFillColor(5);h.attr().setFillStyle(4);paw.plot(h,"F",false);
+paw.configure(r->{r.setAxisGrid(true,true);r.setAxisLabelFont(new java.awt.Font("Serif",java.awt.Font.PLAIN,14));r.setAxisTitleFont(new java.awt.Font("Serif",java.awt.Font.BOLD,16));r.setAxisWidth(4);});
+paw.widget(new PlotText("LEP Very Preliminary",.55,95,16,25,false),false);

@@ -1,0 +1,8 @@
+// More on fits
+// Source: ../../tut.pdf, PDF page 23 (viewer page, not printed footer).
+// Adaptation: Original noisy sine formula with seeded randomness; G, P3, P5 and a custom sine expression use Twig/Minuit.
+paw.cd("more_fits");paw.zones(2,2);double[] x=paw.array(100,0,2*PI);double[] y=paw.map(x,z->sin(z)+paw.random.nextDouble()*.1);
+GraphErrors g=paw.graph("sine",x,y);for(int i=0;i<x.length;i++)g.getVectorEY().set(i,.1);
+String[] forms={"[a]*gaus(x,[m],[s])","[a]+[b]*x+[c]*x*x+[d]*x*x*x","[a]+[b]*x+[c]*x*x+[d]*x*x*x+[e]*pow(x,4)+[f]*pow(x,5)","[amp]*sin(x)"};
+double[][] initial={{1,1.5,.7},{0,1,0,0},{0,1,0,0,0,0},{1}};
+for(int i=0;i<4;i++){paw.zone(i+1);paw.plot(g,"EP",false);paw.plot(paw.fit(g,forms[i],0,i==0?PI:2*PI,initial[i]),"",true);}

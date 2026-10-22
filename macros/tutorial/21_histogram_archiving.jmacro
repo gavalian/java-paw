@@ -1,0 +1,4 @@
+// Histogram archiving
+// Source: ../../tut.pdf, PDF page 51 (viewer page, not printed footer).
+// Adaptation: HIPO object paths preserve the tutorial’s separate 1D/2D directories; RZ cycles and quotas are not emulated.
+paw.cd("histogram_archiving");paw.zones(1,1);Workspace archive=new Workspace();archive.cd("1Dhistograms");archive.put("110",paw.peaks("110",5000));archive.cd("2Dhistograms");archive.put("200",paw.peaks2("200"));Path file=paw.output("archive.hipo");archive.save(file);Workspace read=new Workspace();read.load(file);paw.print(read.objects().keySet());paw.plot(read.get("//PAWC/1Dhistograms/110"));

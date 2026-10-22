@@ -1,0 +1,25 @@
+# Based on paw.pdf printed pp. 30, 32 and 69-71: creation, indexing, arithmetic, drawing.
+# The v1 and v10 initial values are the book's examples; the comparisons are adaptations.
+CDIR //PAWC/book_vectors
+SET HCOL 1
+SET HWID 2
+ZONE 2 2
+V/CREATE v1(10) R 1 2 3 4 0 6
+V/CREATE v10(10) R 1 2 3 4 5 6 7 8 9 10
+V/LIST
+V/PRINT v1
+V/PRINT v10(5:8)
+CD 1
+V/DRAW v1 1101
+CD 2
+V/DRAW v10 1102
+VBIAS v10 5 biased
+VSCALE v10 2 scaled
+CD 3
+SET HCOL 4
+V/DRAW biased 1103
+CD 4
+SET HCOL 2
+V/DRAW scaled 1104
+SET HCOL 1
+SET HWID 1

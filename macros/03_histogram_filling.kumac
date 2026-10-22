@@ -1,0 +1,29 @@
+# Based on paw.pdf printed pp. 70-71, sections 4.6-4.7: HFILL, DRAW, and PLOT.
+# Fixed sample values below are supplied for this adaptation, not a dataset from the book.
+# DRAW treats samples as bin heights; HFILL/PLOT treat them as measured values.
+CDIR //PAWC/book_filling
+SET HCOL 1
+SET HWID 2
+ZONE 2 2
+V/CREATE samples(32) R -1.9 -1.4 -1.2 -1.0 -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 -0.1 0 0 0.1 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.3 1.4 1.6 1.9
+CD 1
+V/DRAW samples 1301
+1D 1302 'Samples filled into booked bins' 20 -2.5 2.5
+V/HFILL samples 1302
+CD 2
+SET HCOL 4
+H/PLOT 1302
+HISTOGRAM/SHOW 1302
+CD 3
+SET HCOL 2
+V/PLOT samples 1303
+H/COPY 1302 1304
+# Scalar filling includes one ordinary entry and one weighted entry.
+HISTOGRAM/FILL 1304 0.15
+HISTOGRAM/FILL 1304 0.65 3
+CD 4
+SET HCOL 1203
+H/PLOT 1304
+HISTOGRAM/SHOW 1304
+SET HCOL 1
+SET HWID 1

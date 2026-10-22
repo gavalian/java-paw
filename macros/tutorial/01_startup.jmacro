@@ -1,0 +1,7 @@
+// Starting PAW Tutorial
+// Source: ../../tut.pdf, PDF page 7 (viewer page, not printed footer).
+// Adaptation: Java macro initialization replaces PAWLOGON and ALLDEF; existing analysis objects are preserved.
+paw.cd("startup"); paw.zones(1,1);
+paw.print("Starting PAW tutorial — Java / HIPO / Twig");
+paw.plot(paw.function1("welcome",100,0,2*PI,x->sin(x)));
+paw.note("Reproducible tutorial examples; independent memory directories");

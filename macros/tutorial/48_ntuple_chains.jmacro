@@ -1,0 +1,5 @@
+// Chain of Ntuples
+// Source: ../../tut.pdf, PDF page 115 (viewer page, not printed footer).
+// Adaptation: Original five/two/ten chain expansion; files are read one at a time, with cancellation checks; no named KUIP chain interpreter.
+paw.cd("ntuple_chains");paw.zones(1,1);Path file=paw.output("chain_source.hipo");paw.staff().write(file);List<Path> mb05=Collections.nCopies(5,file),mb1=new ArrayList<>();mb1.addAll(mb05);mb1.addAll(mb05);List<Path> mb10=new ArrayList<>();for(int i=0;i<10;i++)mb10.addAll(mb1);
+H1F h=paw.h1("age","100-file HIPO chain / 335400 rows",45,20,65);long count=0;for(Path path:mb10){paw.check();TutorialTable t=TutorialTable.read(path);count+=t.size();t.fill(h,"Age");}paw.print("MB05=5 files; MB1=2×MB05; MB10=10×MB1; rows="+count);paw.plot(h);

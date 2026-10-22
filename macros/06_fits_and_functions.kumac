@@ -1,0 +1,27 @@
+# Adapted from the book's histogram fitting discussion and PAW++ fit actions (chapters 6 and 9).
+# Uses analytic bin contents instead of the book's COMIS/Fortran random generator.
+# FUNCTION/PLOT is the workstation spelling for mathematical function drawing.
+CDIR //PAWC/book_fits
+SET HCOL 4
+SET HWID 2
+ZONE 2 2
+SIGMA fit_x=array(100,-4.95#4.95)
+SIGMA gaussian=500*exp(-fit_x^2/2)
+1D 1601 'Gaussian: analytic contents and Minuit fit' 100 -5 5
+H/PUT_VECTOR/CONTENT 1601 gaussian
+CD 1
+H/PLOT 1601
+H/FIT 1601 G
+SIGMA decay_x=array(80,0.05#7.95)
+SIGMA decay=400*exp(-decay_x)
+1D 1602 'Exponential: analytic contents and Minuit fit' 80 0 8
+H/PUT_VECTOR/CONTENT 1602 decay
+CD 2
+H/PLOT 1602
+H/FIT 1602 E
+CD 3
+FUNCTION/PLOT 'sin(x)*x' -3.141592653589793 6.283185307179586
+CD 4
+FUNCTION/PLOT 'cos(x)*x' -3.141592653589793 6.283185307179586
+SET HCOL 1
+SET HWID 1

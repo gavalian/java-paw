@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jlab.paw</groupId><artifactId>paw-java</artifactId><version>0.1.0</version>
+  <name>PAW++ Java Workstation</name>
+  <properties><maven.compiler.release>21</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><j4np.version>1.2.1</j4np.version></properties>
+  <dependencies>
+    <dependency><groupId>j4np</groupId><artifactId>j4np-data</artifactId><version>${j4np.version}</version></dependency>
+    <dependency><groupId>j4np</groupId><artifactId>j4np-ui</artifactId><version>${j4np.version}</version></dependency>
+    <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.12</version><scope>test</scope></dependency>
+  </dependencies>
+  <build><plugins>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.13.0</version></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.2.5</version><configuration><systemPropertyVariables><java.awt.headless>true</java.awt.headless></systemPropertyVariables></configuration></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.6.0</version><executions><execution><phase>package</phase><goals><goal>shade</goal></goals><configuration>
+      <!-- Replace the main artifact with the runnable uber JAR, retaining all classes
+           needed by runtime-compiled Java macros and reflection-based libraries. -->
+      <shadedArtifactAttached>false</shadedArtifactAttached>
+      <minimizeJar>false</minimizeJar>
+      <createDependencyReducedPom>false</createDependencyReducedPom>
+      <filters><filter><artifact>*:*</artifact><excludes><exclude>META-INF/*.SF</exclude><exclude>META-INF/*.RSA</exclude><exclude>META-INF/*.DSA</exclude><exclude>META-INF/INDEX.LIST</exclude></excludes></filter></filters>
+      <transformers><transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/><transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"><mainClass>org.jlab.paw.Main</mainClass></transformer></transformers>
+    </configuration></execution></executions></plugin>
+  </plugins></build>
+</project>

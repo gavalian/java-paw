@@ -1,0 +1,6 @@
+// Histograms creation
+// Source: ../../tut.pdf, PDF page 43 (viewer page, not printed footer).
+// Adaptation: Exact HTFUN1/HTFUN2 functions, seeded rejection sampling replaces HRNDM1; HIPO replaces HBOOK.
+paw.cd("histogram_creation");paw.zones(1,2);H1F shape=paw.function1("100",100,0,1,paw::htfun),samples=paw.peaks("110",5000);paw.plot(samples);
+paw.zone(2);paw.widget(new TutorialGraphics(paw.peaks2("200"),"CONTOUR"),true);
+Workspace archive=new Workspace();archive.put("100",shape);archive.put("110",samples);archive.put("200",paw.workspace.get("200"));archive.save(paw.output("pawhists.hipo"));paw.print(archive.objects().keySet());

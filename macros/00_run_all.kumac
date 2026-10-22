@@ -1,0 +1,16 @@
+# Run all six demonstrations. Each puts objects in its own //PAWC/book_* directory.
+# Nested macro filenames resolve relative to this file, regardless of launch directory.
+# The graphics canvas ends with demonstration 06; run any individual macro to see it again.
+MACRO/DELAY screen_delay
+MACRO/EXEC 01_vectors.kumac
+MACRO/PAGE [screen_delay] 'Page 1 of 6: 01 vectors. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 02_sigma_graphs.kumac
+MACRO/PAGE [screen_delay] 'Page 2 of 6: 02 sigma graphs. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 03_histogram_filling.kumac
+MACRO/PAGE [screen_delay] 'Page 3 of 6: 03 histogram filling. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 04_histogram_colors.kumac
+MACRO/PAGE [screen_delay] 'Page 4 of 6: 04 histogram colors. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 05_vector_histogram_operations.kumac
+MACRO/PAGE [screen_delay] 'Page 5 of 6: 05 vector histogram operations. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 06_fits_and_functions.kumac
+MACRO/PAGE [screen_delay] 'Page 6 of 6: 06 fits and functions. Enter any input and click Continue to finish.'

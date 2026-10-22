@@ -1,0 +1,9 @@
+// Macros flow control
+// Source: ../../tut.pdf, PDF page 21 (viewer page, not printed footer).
+// Adaptation: Java if/switch/while/do/for/break/continue/return and exceptions replace KUIP flow statements; no GOTO interpreter.
+paw.cd("flow_control");paw.zones(1,1);double a=10,nn=1.5,total=a+nn;
+paw.print(total>11?"The total is greater than 11":"The total is at most 11");
+String extension="tex";paw.print(switch(extension){case "f"->"Fortran";case "tex"->"LaTeX";default->"Unknown";});
+H1F h=paw.h1("control","Java loop and conditional branches",10,0,10);
+int i=0;while(i<10){if(i==4){i++;continue;}h.fill(i++);}do{h.fill(1);}while(false);
+for(int k=0;k<10;k++){if(k==3)break;h.fill(k);}paw.plot(h);

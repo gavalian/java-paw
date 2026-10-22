@@ -1,0 +1,4 @@
+// PAW++ panels creation
+// Source: ../../tut.pdf, PDF page 139 (viewer page, not printed footer).
+// Adaptation: Editable Swing command buttons replace KUIP PANEL; pixel bitmap ICON files and tutorial shell/printer commands are not reproduced.
+paw.cd("pawpp_panels");paw.zones(1,1);paw.plot(paw.peaks("110",5000));Map<String,String> buttons=new LinkedHashMap<>();buttons.put("List objects","H/LIST");buttons.put("Plot spectrum","H/PLOT //PAWC/tutorial/pawpp_panels/110");buttons.put("Fit Gaussian","H/FIT //PAWC/tutorial/pawpp_panels/110 G");buttons.put("Vector tutorial","MACRO/EXEC "+org.jlab.paw.Commands.quote(paw.file("02_vectors.jmacro").toString()));paw.panel("PAW++ Tutorial Panel — right-click to edit",buttons);

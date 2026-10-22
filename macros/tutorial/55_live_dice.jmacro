@@ -1,0 +1,5 @@
+// Updating plots in real time (1)
+// Source: ../../tut.pdf, PDF page 131 (viewer page, not printed footer).
+// Adaptation: Seeded dice sampling, repeated graphics replacement and cancel checks; optional batches default 50. Headless runs skip display delays.
+paw.cd("live_dice");paw.zones(1,1);int batches=paw.integerArgument(0,50);if(batches<1||batches>1000)throw new IllegalArgumentException("Batches 1..1000");H1F h=paw.h1("dice","Sum of two dice",11,2,13);
+for(int n=0;n<batches;n++){paw.check();for(int i=0;i<1000;i++)h.fill(2+paw.random.nextInt(6)+paw.random.nextInt(6));paw.plot(h,"EP",false);paw.pause(30);}F1D fit=paw.fit(h,"[a]*gaus(x,[m],[s])",2,13,h.getBinContent(h.getMaximumBin()),7,sqrt(35.0/6));paw.plot(fit,"",true);

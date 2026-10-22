@@ -1,0 +1,7 @@
+// A more complex example
+// Source: ../../tut.pdf, PDF page 81 (viewer page, not printed footer).
+// Adaptation: Synthetic spectrum replaces missing pawtut.hbook; sideband P3 and iterative two-Gaussian subtraction reproduce the analysis purpose.
+paw.cd("iterative_background_fit");paw.zones(1,2);H1F data=paw.function1("data",160,0,1,x->30+20*x+10*x*x+180*exp(-.5*pow((x-.45)/.045,2))+100*exp(-.5*pow((x-.61)/.035,2)));
+H1F working=data.copy(),background=paw.h1("background","P3 background",160,0,1),residual=paw.h1("residual","Signal after background subtraction",160,0,1);paw.plot(data,"EP",false);
+for(int iteration=0;iteration<6;iteration++){paw.check();GraphErrors sideband=new GraphErrors();for(int i=0;i<160;i++){double x=data.getAxis().getBinCenter(i);if(x<.3||x>.75)sideband.addPoint(x,working.getBinContent(i),0,max(1,working.getBinError(i)));}F1D fit=paw.fit(sideband,"[a]+[b]*x+[c]*x*x+[d]*x*x*x",0,1,30,20,10,0);for(int i=0;i<160;i++){double x=data.getAxis().getBinCenter(i);background.setBinContent(i,fit.evaluate(x));residual.setBinContent(i,data.getBinContent(i)-fit.evaluate(x));residual.setBinError(i,data.getBinError(i));}F1D peak=paw.fit(residual,"[a]*gaus(x,[m],[s])+[b]*gaus(x,[n],[t])",.3,.75,180,.45,.045,100,.61,.035);for(int i=0;i<160;i++)working.setBinContent(i,data.getBinContent(i)-peak.evaluate(data.getAxis().getBinCenter(i)));}
+paw.plot(background,"L",true);paw.zone(2);paw.plot(residual,"EP",false);

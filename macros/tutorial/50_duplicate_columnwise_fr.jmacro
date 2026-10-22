@@ -1,0 +1,4 @@
+// CW-Ntuple duplicated with selection (1)
+// Source: ../../tut.pdf, PDF page 119 (viewer page, not printed footer).
+// Adaptation: Nation FR is synthetic numeric code 7; typed HIPO bank replaces CWN and COMIS duplication.
+paw.cd("duplicate_columnwise_fr");paw.zones(1,1);TutorialTable subset=paw.staff().select("Nation==7");Path path=paw.output("subset_fr.hipo");subset.writeTyped(path,Map.of("Age","I","Nation","I","Cost","F"));paw.plot(paw.keep("age",TutorialTable.read(path).auto("age","Age")));paw.note("Synthetic FR code=7; selected rows="+subset.size());

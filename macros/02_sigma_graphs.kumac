@@ -1,0 +1,28 @@
+# Based on paw.pdf printed p. 72, section 5.1: xvec, sin(xvec)*xvec, cos(xvec)*xvec.
+# Uses named intermediate vectors instead of the book's inline $SIGMA expression.
+# Fourth panel adapts VECTOR/PLOT's scatter-plot form from printed p. 71.
+CDIR //PAWC/book_sigma
+SET PCOL 1
+SET PWID 2
+ZONE 2 2
+SIGMA xvec=array(100,-pi#pi*2)
+SIGMA sinus=sin(xvec)*xvec
+SIGMA cosinus=cos(xvec)*xvec
+CD 1
+SET PCOL 4
+GRAPH 100 xvec sinus L
+H/COPY graph sine_curve
+CD 2
+SET PCOL 2
+GRAPH 100 xvec cosinus L
+H/COPY graph cosine_curve
+SIGMA radius=sqrt(sinus^2+cosinus^2)
+CD 3
+SET PCOL 3
+GRAPH 100 xvec radius LP
+H/COPY graph radius_curve
+CD 4
+SET PCOL 6
+V/PLOT sinus%cosinus 1204
+SET PCOL 1
+SET PWID 1

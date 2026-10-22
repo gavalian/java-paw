@@ -1,0 +1,8 @@
+// Some more vector commands
+// Source: ../../tut.pdf, PDF page 11 (viewer page, not printed footer).
+// Adaptation: Original values; Java double[][] replaces multidimensional KUIP vectors. Output uses whitespace ASCII instead of Fortran formats.
+paw.cd("matrix_vectors");paw.zones(1,1);
+double[][] v={paw.array(10,1,10),{9.1,8.1,7.1,6.1,5.1,4.1,3.1,2.1,1.1,.1},{6.2,4.2,3.2,2.2,1.2,1.2,2.2,3.2,4.2,5.2}};
+for(int column=0;column<3;column++){GraphErrors g=paw.graph("column"+column,v[0],v[column]);g.attr().setLineColor(column+2);paw.plot(g,"LP",column>0);}
+StringBuilder text=new StringBuilder();for(int row=0;row<10;row++)text.append(String.format(Locale.ROOT,"%.1f %.1f %.1f%n",v[0][row],v[1][row],v[2][row]));
+Files.writeString(paw.output("vector.data"),text);paw.print("Wrote three vector columns to "+paw.output("vector.data"));

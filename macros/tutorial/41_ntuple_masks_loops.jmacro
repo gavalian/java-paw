@@ -1,0 +1,4 @@
+// Use of Ntuple masks and loops
+// Source: ../../tut.pdf, PDF page 99 (viewer page, not printed footer).
+// Adaptation: Exact grade/step predicates; BitSet binary file replaces direct-access 32-bit-word PAW masks.
+paw.cd("ntuple_masks_loops");paw.zones(1,1);TutorialTable t=paw.staff();BitSet first=t.mask("Step==15"),second=t.mask("Grade>4 && Step==13"),third=t.mask("(Grade==13 && Step==10)||(Grade==14 && Step==7)");BitSet selected=(BitSet)first.clone();selected.or(second);selected.or(third);Files.write(paw.output("staff.mask"),selected.toByteArray());BitSet restored=BitSet.valueOf(Files.readAllBytes(paw.output("staff.mask")));paw.print("Mask counts: "+first.cardinality()+", "+second.cardinality()+", "+third.cardinality()+"; union="+restored.cardinality());H1F all=paw.keep("all",t.project("all","Grade",12,3,15)),end=paw.keep("end",t.masked(restored).project("end","Grade",12,3,15));paw.plot(all,"B",false);end.attr().setLineColor(2);paw.plot(end,"F",true);

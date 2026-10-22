@@ -1,0 +1,7 @@
+// Multiple fits on histograms
+// Source: ../../tut.pdf, PDF page 53 (viewer page, not printed footer).
+// Adaptation: Two range-limited Gaussian fits initialize a six-parameter combined Twig/Minuit fit.
+paw.cd("multiple_fits");paw.zones(1,1);H1F h=paw.peaks("110",5000);paw.plot(h,"EP",false);
+F1D left=paw.fit(h,"[a]*gaus(x,[m],[s])",0,.5,140,.3,.07),right=paw.fit(h,"[a]*gaus(x,[m],[s])",.5,1,70,.7,.12);
+left.attr().setLineStyle(2);right.attr().setLineStyle(2);paw.plot(left,"",true);paw.plot(right,"",true);
+F1D both=paw.fit(h,"[a]*gaus(x,[m],[s])+[b]*gaus(x,[n],[t])",0,1,left.getParameter(0),left.getParameter(1),left.getParameter(2),right.getParameter(0),right.getParameter(1),right.getParameter(2));both.attr().setLineColor(4);paw.plot(both,"",true);

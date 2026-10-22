@@ -1,0 +1,5 @@
+// Histograms attributes
+// Source: ../../tut.pdf, PDF page 59 (viewer page, not printed footer).
+// Adaptation: Data attributes round-trip in HIPO; log Y is explicitly restored as a view property rather than legacy IDOPT metadata.
+paw.cd("histogram_attributes");paw.zones(1,2);H1F h=paw.peaks("110",5000);h.attr().setDrawOptions("EP");h.attr().setTitleX("x");h.attr().setTitleY("Counts");h.attr().setLineColor(4);paw.plot(h,"EP",false);paw.configure(r->r.getAxisFrame().setLogY(true));
+Workspace archive=new Workspace();archive.put("110",h);archive.save(paw.output("attributes.hipo"));Workspace restored=new Workspace();restored.load(paw.output("attributes.hipo"));paw.zone(2);paw.plot(restored.get("110"),restored.get("110").attr().getDrawOptions(),false);paw.configure(r->r.getAxisFrame().setLogY(true));

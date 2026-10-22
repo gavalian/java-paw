@@ -1,0 +1,4 @@
+// Subranges in histogram identifiers
+// Source: ../../tut.pdf, PDF page 69 (viewer page, not printed footer).
+// Adaptation: Explicit 1-based Java crop calls replace PAW ID subrange syntax; the last crop approximates the example’s real-valued range using bins.
+paw.cd("histogram_subranges");paw.zones(2,2);H1F h=paw.peaks("110",5000);paw.plot(paw.crop(h,56,95,"range1"),"EP",false);H2F h2=paw.peaks2("200");paw.zone(2);paw.widget(new TutorialGraphics(paw.crop(h2,8,8,1,25,"column"),"BOX"),true);paw.zone(3);paw.widget(new TutorialGraphics(paw.crop(h2,3,15,3,15,"square"),"CONTOUR"),true);paw.zone(4);paw.widget(new TutorialGraphics(paw.crop(h2,1,12,3,13,"values"),"LEGO"),true);

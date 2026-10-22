@@ -1,0 +1,4 @@
+// CW-Ntuple duplicated with selection (2)
+// Source: ../../tut.pdf, PDF page 121 (viewer page, not printed footer).
+// Adaptation: Nation IT is synthetic code 8; explicit row loop replaces the second COMIS method.
+paw.cd("duplicate_columnwise_it");paw.zones(1,1);TutorialTable t=paw.staff();List<double[]> selected=new ArrayList<>();for(double[] row:t.rows())if(row[8]==8)selected.add(row);TutorialTable subset=new TutorialTable(t.columns.toArray(String[]::new));selected.forEach(subset::add);Path path=paw.output("subset_it.hipo");subset.writeTyped(path,Map.of("Age","I","Nation","I","Cost","F"));paw.plot(paw.keep("age",TutorialTable.read(path).auto("age","Age")));paw.note("Synthetic IT code=8; Java loop duplication");

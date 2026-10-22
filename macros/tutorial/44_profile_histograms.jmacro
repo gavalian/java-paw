@@ -1,0 +1,4 @@
+// Ntuple and 2D histograms: profile histograms
+// Source: ../../tut.pdf, PDF page 107 (viewer page, not printed footer).
+// Adaptation: Tutorial PROF convention is implemented explicitly: mean Y and population RMS per X bin.
+paw.cd("profile_histograms");paw.zones(1,2);TutorialTable t=paw.staff();paw.plot(paw.graph("scatter",t.column("Grade"),t.column("Age")),"P",false);paw.zone(2);paw.plot(paw.keep("profile",t.profile("profile","Grade","Age",12,3,15)),"EP",false);paw.note("Bin content = mean age; error = RMS age spread");

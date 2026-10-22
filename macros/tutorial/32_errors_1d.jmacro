@@ -1,0 +1,9 @@
+// Errors representation on 1D histograms
+// Source: ../../tut.pdf, PDF page 73 (viewer page, not printed footer).
+// Adaptation: Custom rectangles and polygon envelopes supplement Twig EP bars; smoothed envelope uses Twig quadratic paths; PAW cap sizes differ.
+paw.cd("errors_1d");paw.zones(2,3);H1F h=paw.crop(paw.peaks("110",5000),1,50,"half");
+for(int mode=0;mode<6;mode++){paw.zone(mode+1);H1F copy=h.copy();copy.attr().setTitle(new String[]{"Errors","Capped errors","Error rectangles","Error envelope","Smoothed envelope","User errors"}[mode]);
+if(mode==5)for(int i=0;i<50;i++)copy.setBinError(i,200.0*i/99);paw.plot(copy,mode<2||mode==5?"EP":"L",false);
+if(mode==2)for(int i=0;i<50;i++){double x=copy.getAxis().getBinCenter(i),w=copy.getAxis().getBinWidth(i)/2,y=copy.getBinContent(i),e=copy.getBinError(i);Polygon box=new Polygon(new double[]{x-w,x+w,x+w,x-w},new double[]{y-e,y-e,y+e,y+e});box.fill().setFillColor(4);paw.widget(box,false);}
+if(mode==3||mode==4){double[] x=new double[100],y=new double[100];for(int i=0;i<50;i++){x[i]=copy.getAxis().getBinCenter(i);y[i]=copy.getBinContent(i)+copy.getBinError(i);x[99-i]=x[i];y[99-i]=copy.getBinContent(i)-copy.getBinError(i);}Polygon band=new Polygon(x,y);band.fill().setFillColor(4);if(mode==4)band.setQuardatic(true);paw.widget(band,false);}
+}

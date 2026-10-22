@@ -1,0 +1,15 @@
+# PAW++ Java demonstration; all objects are native Twig datasets.
+DEMO
+ZONE 2 2
+CD 1
+H/PLOT 10
+H/FIT 10 G
+CD 2
+H/PLOT 20
+H/FIT 20 E
+CD 3
+H/PLOT 30
+HISTOGRAM/REBIN 10 coarse 2
+CD 4
+H/PLOT coarse
+HISTOGRAM/SHOW coarse

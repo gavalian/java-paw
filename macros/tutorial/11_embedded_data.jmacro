@@ -1,0 +1,16 @@
+// Data embedded into a macro
+// Source: ../../tut.pdf, PDF page 29 (viewer page, not printed footer).
+// Adaptation: Exact ten embedded rows; Java text block replaces APPLICATION DATA; temporary file is deleted.
+paw.cd("embedded_data");paw.zones(1,1);String data="""
+1 1 5
+2 2 4
+3 3 3
+4 4 2
+5 5 1
+6 5 1
+7 4 2
+8 3 3
+9 2 4
+10 1 5
+""";
+Path temp=Files.createTempFile("paw-embedded-",".dat");try{Files.writeString(temp,data);TutorialTable t=TutorialTable.ascii(temp,"X","Y","Z");paw.plot(paw.graph("xy",t.column("X"),t.column("Y")),"LP",false);paw.plot(paw.graph("xz",t.column("X"),t.column("Z")),"LP",true);}finally{Files.deleteIfExists(temp);}

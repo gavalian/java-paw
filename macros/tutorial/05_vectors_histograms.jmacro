@@ -1,0 +1,7 @@
+// Vectors and Histograms
+// Source: ../../tut.pdf, PDF page 15 (viewer page, not printed footer).
+// Adaptation: Original vector; distributions and bin-content insertion remain distinct operations.
+paw.cd("vectors_histograms");paw.zones(2,2);paw.vector("vect1",new double[]{1,2,3,4,5,5,4,3,2,1});
+paw.command("V/DRAW vect1 101");paw.zone(2);paw.command("V/PLOT vect1 102");
+paw.zone(3);paw.command("1D 103 'Filled values' 5 1 6");paw.command("V/HFILL vect1 103");paw.command("H/PLOT 103");
+paw.zone(4);paw.command("1D 104 'Bin contents' 10 1 11");paw.command("H/PUT_VECTOR/CONTENT 104 vect1");paw.command("H/PLOT 104");

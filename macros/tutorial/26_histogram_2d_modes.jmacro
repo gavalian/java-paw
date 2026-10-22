@@ -1,0 +1,4 @@
+// Two-dimensional histograms representations
+// Source: ../../tut.pdf, PDF page 61 (viewer page, not printed footer).
+// Adaptation: Four featured representations are Twig widgets over the same H2F; rendering differs from HIGZ.
+paw.cd("histogram_2d_modes");paw.zones(2,2);H2F h=paw.peaks2("200");String[] modes={"BOX","CONTOUR","LEGO","SURFACE"};for(int i=0;i<4;i++){paw.zone(i+1);paw.widget(new TutorialGraphics(h,modes[i]),true);}

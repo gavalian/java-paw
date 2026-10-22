@@ -1,0 +1,12 @@
+# MATCH fixture: tutorial triplets and unrelated lines
+Ignored header line
+Data1 1 1 1
+Data2 2 2 2
+Data3 3 3 3
+Data4 4 4 4
+Data5 5 5 5
+Data6 6 6 6
+Data7 7 7 7
+Data8 8 8 8
+Data9 9 9 9
+Ignored footer

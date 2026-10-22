@@ -1,0 +1,6 @@
+// Plot two-dimensional functions
+// Source: ../../tut.pdf, PDF page 37 (viewer page, not printed footer).
+// Adaptation: Exact function formulas; Twig H2F plus added Twig widgets provide contour and surface representations.
+paw.cd("functions_2d");paw.zones(2,2);H2F a=paw.function2("10",40,-6,6,40,-6,6,(x,y)->abs(x==0?1:sin(x)/x)*cos(y)*y);
+paw.widget(new TutorialGraphics(a,"SCATTER"),true);paw.zone(2);paw.widget(new TutorialGraphics(a,"CONTOUR"),true);
+H2F b=paw.function2("20",40,-10,10,40,-10,10,(x,y)->x*sin(x)*y*sin(y));paw.zone(3);paw.widget(new TutorialGraphics(b,"SURFACE"),true);paw.zone(4);paw.plot(b);

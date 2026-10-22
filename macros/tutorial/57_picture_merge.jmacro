@@ -1,0 +1,4 @@
+// Merge pictures onto one plot
+// Source: ../../tut.pdf, PDF page 135 (viewer page, not printed footer).
+// Adaptation: Captures a Twig picture and merges it as an inset; bitmap inset replaces editable HIGZ picture objects.
+paw.cd("picture_merge");paw.zones(1,1);H1F h=paw.peaks("110",5000);paw.plot(paw.crop(h,31,40,"detail"),"EP",false);java.awt.image.BufferedImage inset=paw.capture();paw.plot(h,"F",false);paw.widget(new PictureInset(inset,.5,.48,.42,.42),false);

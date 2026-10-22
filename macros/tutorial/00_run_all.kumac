@@ -1,0 +1,120 @@
+* Complete tutorial sequence; each example owns a //PAWC/tutorial directory.
+MACRO/DELAY screen_delay
+MACRO/EXEC 01_startup.jmacro
+MACRO/PAGE [screen_delay] 'Page 1 of 59: 01 startup. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 02_vectors.jmacro
+MACRO/PAGE [screen_delay] 'Page 2 of 59: 02 vectors. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 03_matrix_vectors.jmacro
+MACRO/PAGE [screen_delay] 'Page 3 of 59: 03 matrix vectors. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 04_vector_draw_options.jmacro
+MACRO/PAGE [screen_delay] 'Page 4 of 59: 04 vector draw options. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 05_vectors_histograms.jmacro
+MACRO/PAGE [screen_delay] 'Page 5 of 59: 05 vectors histograms. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 06_vector_operations.jmacro
+MACRO/PAGE [screen_delay] 'Page 6 of 59: 06 vector operations. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 07_loop_vector_fit.jmacro
+MACRO/PAGE [screen_delay] 'Page 7 of 59: 07 loop vector fit. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 08_flow_control.jmacro
+MACRO/PAGE [screen_delay] 'Page 8 of 59: 08 flow control. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 09_more_fits.jmacro
+MACRO/PAGE [screen_delay] 'Page 9 of 59: 09 more fits. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 10_vector_read_match.jmacro
+MACRO/PAGE [screen_delay] 'Page 10 of 59: 10 vector read match. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 11_embedded_data.jmacro
+MACRO/PAGE [screen_delay] 'Page 11 of 59: 11 embedded data. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 12_functions_1d.jmacro
+MACRO/PAGE [screen_delay] 'Page 12 of 59: 12 functions 1d. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 13_function_loop.jmacro
+MACRO/PAGE [screen_delay] 'Page 13 of 59: 13 function loop. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 14_parameters_return.jmacro
+MACRO/PAGE [screen_delay] 'Page 14 of 59: 14 parameters return. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 15_global_variables.jmacro
+MACRO/PAGE [screen_delay] 'Page 15 of 59: 15 global variables. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 16_functions_2d.jmacro
+MACRO/PAGE [screen_delay] 'Page 16 of 59: 16 functions 2d. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 17_mandelbrot.jmacro
+MACRO/PAGE [screen_delay] 'Page 17 of 59: 17 mandelbrot. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 18_functions_3d.jmacro
+MACRO/PAGE [screen_delay] 'Page 18 of 59: 18 functions 3d. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 19_histogram_creation.jmacro
+MACRO/PAGE [screen_delay] 'Page 19 of 59: 19 histogram creation. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 20_histogram_file_read.jmacro
+MACRO/PAGE [screen_delay] 'Page 20 of 59: 20 histogram file read. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 21_histogram_archiving.jmacro
+MACRO/PAGE [screen_delay] 'Page 21 of 59: 21 histogram archiving. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 22_multiple_fits.jmacro
+MACRO/PAGE [screen_delay] 'Page 22 of 59: 22 multiple fits. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 23_histogram_operations.jmacro
+MACRO/PAGE [screen_delay] 'Page 23 of 59: 23 histogram operations. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 24_histogram_cosmetics.jmacro
+MACRO/PAGE [screen_delay] 'Page 24 of 59: 24 histogram cosmetics. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 25_histogram_attributes.jmacro
+MACRO/PAGE [screen_delay] 'Page 25 of 59: 25 histogram attributes. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 26_histogram_2d_modes.jmacro
+MACRO/PAGE [screen_delay] 'Page 26 of 59: 26 histogram 2d modes. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 27_contour_levels.jmacro
+MACRO/PAGE [screen_delay] 'Page 27 of 59: 27 contour levels. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 28_coordinate_systems.jmacro
+MACRO/PAGE [screen_delay] 'Page 28 of 59: 28 coordinate systems. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 29_logarithmic_lego.jmacro
+MACRO/PAGE [screen_delay] 'Page 29 of 59: 29 logarithmic lego. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 30_histogram_subranges.jmacro
+MACRO/PAGE [screen_delay] 'Page 30 of 59: 30 histogram subranges. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 31_stacked_lego.jmacro
+MACRO/PAGE [screen_delay] 'Page 31 of 59: 31 stacked lego. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 32_errors_1d.jmacro
+MACRO/PAGE [screen_delay] 'Page 32 of 59: 32 errors 1d. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 33_errors_2d_colors.jmacro
+MACRO/PAGE [screen_delay] 'Page 33 of 59: 33 errors 2d colors. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 34_errors_2d_bars.jmacro
+MACRO/PAGE [screen_delay] 'Page 34 of 59: 34 errors 2d bars. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 35_iterative_background_fit.jmacro
+MACRO/PAGE [screen_delay] 'Page 35 of 59: 35 iterative background fit. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 36_ntuple_rowwise.jmacro
+MACRO/PAGE [screen_delay] 'Page 36 of 59: 36 ntuple rowwise. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 37_ntuple_columnwise.jmacro
+MACRO/PAGE [screen_delay] 'Page 37 of 59: 37 ntuple columnwise. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 38_ntuple_binning.jmacro
+MACRO/PAGE [screen_delay] 'Page 38 of 59: 38 ntuple binning. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 39_ntuple_selection_scan.jmacro
+MACRO/PAGE [screen_delay] 'Page 39 of 59: 39 ntuple selection scan. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 40_spider_scan.jmacro
+MACRO/PAGE [screen_delay] 'Page 40 of 59: 40 spider scan. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 41_ntuple_masks_loops.jmacro
+MACRO/PAGE [screen_delay] 'Page 41 of 59: 41 ntuple masks loops. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 42_ntuple_cuts.jmacro
+MACRO/PAGE [screen_delay] 'Page 42 of 59: 42 ntuple cuts. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 43_alphanumeric_labels.jmacro
+MACRO/PAGE [screen_delay] 'Page 43 of 59: 43 alphanumeric labels. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 44_profile_histograms.jmacro
+MACRO/PAGE [screen_delay] 'Page 44 of 59: 44 profile histograms. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 45_histogram_projections.jmacro
+MACRO/PAGE [screen_delay] 'Page 45 of 59: 45 histogram projections. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 46_ntuple_to_vector.jmacro
+MACRO/PAGE [screen_delay] 'Page 46 of 59: 46 ntuple to vector. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 47_file_merging.jmacro
+MACRO/PAGE [screen_delay] 'Page 47 of 59: 47 file merging. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 48_ntuple_chains.jmacro
+MACRO/PAGE [screen_delay] 'Page 48 of 59: 48 ntuple chains. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 49_duplicate_rowwise.jmacro
+MACRO/PAGE [screen_delay] 'Page 49 of 59: 49 duplicate rowwise. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 50_duplicate_columnwise_fr.jmacro
+MACRO/PAGE [screen_delay] 'Page 50 of 59: 50 duplicate columnwise fr. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 51_duplicate_columnwise_it.jmacro
+MACRO/PAGE [screen_delay] 'Page 51 of 59: 51 duplicate columnwise it. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 52_sigma_1.jmacro
+MACRO/PAGE [screen_delay] 'Page 52 of 59: 52 sigma 1. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 53_sigma_2.jmacro
+MACRO/PAGE [screen_delay] 'Page 53 of 59: 53 sigma 2. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 54_graphical_histogram_add.jmacro
+MACRO/PAGE [screen_delay] 'Page 54 of 59: 54 graphical histogram add. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 55_live_dice.jmacro
+MACRO/PAGE [screen_delay] 'Page 55 of 59: 55 live dice. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 56_live_gaussian.jmacro
+MACRO/PAGE [screen_delay] 'Page 56 of 59: 56 live gaussian. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 57_picture_merge.jmacro
+MACRO/PAGE [screen_delay] 'Page 57 of 59: 57 picture merge. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 58_postscript_output.jmacro
+MACRO/PAGE [screen_delay] 'Page 58 of 59: 58 postscript output. Enter any input and click Continue to draw the next page.'
+MACRO/EXEC 59_pawpp_panels.jmacro
+MACRO/PAGE [screen_delay] 'Page 59 of 59: 59 pawpp panels. Enter any input and click Continue to finish.'

@@ -1,0 +1,6 @@
+// Plot a few one-dimensional functions
+// Source: ../../tut.pdf, PDF page 31 (viewer page, not printed footer).
+// Adaptation: Original expressions with the removable sinc singularity defined at x=0; Twig line styles and grid.
+paw.cd("functions_1d");paw.zones(1,1);double[] x=paw.array(401,-10,10);
+DoubleUnaryOperator[] f={z->z*sin(z)*exp(-.1*z),z->pow(sin(z)+cos(z),5),z->(z==0?1:sin(z)/z)-z*cos(z)};
+for(int i=0;i<f.length;i++){GraphErrors g=paw.graph("function"+i,x,paw.map(x,f[i]));g.attr().setLineStyle(i+1);g.attr().setLineColor(i+2);paw.plot(g,"L",i>0);}paw.configure(r->r.setAxisGrid(true,true));

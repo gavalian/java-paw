@@ -1,0 +1,5 @@
+// The Mandelbrot distribution
+// Source: ../../tut.pdf, PDF page 39 (viewer page, not printed footer).
+// Adaptation: Book MANDEL.F recurrence, range and 30-iteration limit translated into Java; colored H2 raster replaces BOX.
+paw.cd("mandelbrot");paw.zones(1,1);int bins=paw.integerArgument(0,160);if(bins<10||bins>500)throw new IllegalArgumentException("Bins 10..500");
+H2F h=paw.function2("mandelbrot",bins,-2.4,.8,bins,-1.2,1.2,(x,y)->{double xx=0,yy=0;int n;for(n=1;n<=30;n++){double tt=xx*xx-yy*yy+x;yy=2*xx*yy+y;xx=tt;if(xx*xx+yy*yy>4)break;}return (double)n/30;});paw.plot(h);

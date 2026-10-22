@@ -1,0 +1,5 @@
+// Errors representations on 2D histograms
+// Source: ../../tut.pdf, PDF page 75 (viewer page, not printed footer).
+// Adaptation: Exact tutorial functions; a Java error matrix supplements H2F, whose backend lacks independent bin errors; error magnitudes use absolute values.
+paw.cd("errors_2d_colors");paw.zones(2,2);H2F h=paw.function2("2",20,-1,1,20,-1,1,(x,y)->x*x*y);paw.widget(new TutorialGraphics(h,"SURFACE"),true);paw.zone(2);paw.widget(new TutorialGraphics(h,"ERROR_COLOR"),true);
+H2F e=paw.function2("3",20,-6,6,20,-6,6,(x,y)->sin(x)*cos(y));double[][] errors=new double[20][20];for(int i=0;i<20;i++)for(int j=0;j<20;j++)errors[i][j]=abs(e.getBinContent(i,j));paw.zone(3);paw.widget(new TutorialGraphics(h,"ERROR_COLOR",null,errors,"CARTESIAN",false,false,false),true);paw.zone(4);paw.widget(new TutorialGraphics(h,"ERROR",null,errors,"CARTESIAN",false,false,false),true);

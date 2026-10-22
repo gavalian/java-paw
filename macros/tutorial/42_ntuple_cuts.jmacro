@@ -1,0 +1,10 @@
+// The use of Ntuple Cuts
+// Source: ../../tut.pdf, PDF page 103 (viewer page, not printed footer).
+// Adaptation: Exact modulo flag cuts; persisted textual predicates and programmatic polygon cuts replace $nn and interactive mouse GCUT. Synthetic division labels use original names.
+paw.cd("ntuple_cuts");paw.zones(1,2);TutorialTable t=paw.staff();// Flag is integer-coded; modulo is evaluated below in Java.
+Map<String,String> cuts=Map.of("$1","mod(int(Flag),2)==0","$2","mod(int(Flag),4)>1");
+Path cutFile=paw.output("cuts.txt");Files.writeString(cutFile,"$1="+cuts.get("$1")+"\n$2="+cuts.get("$2")+"\n");
+Map<String,String> restored=new HashMap<>();for(String line:Files.readAllLines(cutFile)){int eq=line.indexOf('=');restored.put(line.substring(0,eq),line.substring(eq+1));}
+TutorialTable[] groups={t,t.select(restored.get("$2")),t.select(restored.get("$1")),t.select("("+restored.get("$1")+")&&("+restored.get("$2")+")")};
+String[] labels={"AG","DD","DG","EF","EP","FI","LEP","PE","PS","SPS","ST","TH","TIS"};for(int i=0;i<groups.length;i++){H1F h=paw.keep("group"+i,groups[i].project("group"+i,"Division",13,.5,13.5));h.attr().setLineColor(i+1);paw.plot(h,"L",i>0);}paw.configure(r->r.setAxisTicksX(paw.array(13,1,13),labels));
+paw.zone(2);double[] px={25,50,55,30},py={2,2,20,20};TutorialTable polygon=t.select(r->TutorialTable.inside(r[3],r[4],px,py));paw.plot(paw.graph("selected",polygon.column("Age"),polygon.column("Service")),"P",false);paw.widget(new Polygon(px,py),false);
