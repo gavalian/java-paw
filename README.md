@@ -6,6 +6,36 @@ The default theme uses Java's Motif look and feel with the manual's cream panels
 
 This is a working first release, not a complete CERNLIB reimplementation or a pixel-identical native X11 application. All application panels use separate, independently movable and resizable Swing `JFrame` windows, including viewers, scanners, cut editors, browser clones, help and command panels. Native OS title bars and window controls remain available; classic Motif colors and controls are applied inside each frame. Screen geometry, fonts, and Twig's plot rendering differ from the original. See the coverage table below before using existing PAW macros.
 
+## Download and run a release
+
+Download `java-paw-v<VERSION>-build.<NUMBER>.tar.gz` from the
+[Releases page](https://github.com/gavalian/java-paw/releases). The archive contains
+`java-paw.jar` (the shaded application with its runtime dependencies), `macros/`
+including all 59 tutorials under `macros/tutorial/` and their data/helpers,
+`examples/`, documentation, and build information. No Maven installation or access
+to the private j4np repository is required. Java 21 or newer is required; use a
+full **JDK 21+** to execute the Java tutorial macros.
+
+Extract the archive and run from the extracted directory so example paths resolve.
+Replace the sample archive and directory names below with your downloaded release:
+
+```sh
+tar -xzf java-paw-v0.1.0-build.123.tar.gz
+cd java-paw-v0.1.0-build.123
+java -jar java-paw.jar --motif
+```
+
+Run an example directly:
+
+```sh
+java -jar java-paw.jar --motif --empty --macro macros/tutorial/26_histogram_2d_modes.jmacro
+```
+
+Or enter `MACRO/EXEC 'macros/tutorial/00_run_all.kumac'` in the Executive to explore
+all tutorials. Generated files go under the example output directories. The
+standalone release JAR remains available for users who already have the examples;
+the `.tar.gz` bundle provides everything together. `SHA256SUMS` covers both assets.
+
 ## Build and launch
 
 Run from this directory:
@@ -166,3 +196,10 @@ After a successful build on `main`, the workflow creates a GitHub release tagged
 The workflow uses the built-in `GITHUB_TOKEN` with `contents: write` only in the publishing job. **j4np currently requires authenticated access:** add an Actions repository secret named `J4NP_READ_TOKEN` with read-only Contents access to `gavalian/j4np` (a fine-grained token must be granted access to that repository). The built-in token cannot read a different private repository. If j4np becomes public, this secret is optional. Fork pull requests do not receive this secret and cannot build the private dependency. For local authenticated downloads, use `J4NP_REPOSITORY=git@github.com:gavalian/j4np.git ./build.sh --with-j4np`. GitHub Actions must be enabled for the repository and allowed by organization policy to publish releases. Commit and push this workflow to GitHub to activate it. To update j4np, change its commit in `scripts/j4np.ref`, update its version there and in `pom.xml`/`build.sh` if needed, then run the complete build before merging.
 
 The repository contains application sources, documentation, manuals and macros. Downloaded j4np sources, Maven output, and generated analysis files are ignored. The original distribution directory is preserved as a migration backup.
+
+Releases also attach `java-paw-v<VERSION>-build.<NUMBER>.tar.gz`, containing the
+shaded JAR as `java-paw.jar`, macros (including `macros/tutorial`), examples, and
+documentation under one directory. Packaging excludes generated `output` folders.
+CI extracts this archive and runs both `examples/demo.kumac` and the complete
+59-topic tutorial with the packaged JAR before publishing. Checksums cover the
+standalone JAR and archive.

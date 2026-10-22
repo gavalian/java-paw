@@ -72,7 +72,36 @@ jobs:
             echo "j4np commit: $(git -C .deps/j4np rev-parse HEAD)"
             echo "Java runtime: JDK 21 or newer"
           } > dist/build-info.txt
-          (cd dist && sha256sum ./*.jar > SHA256SUMS)
+          # Keep the existing standalone JAR and also ship a ready-to-run bundle.
+          staging=$(mktemp -d)
+          trap 'rm -rf "$staging"' EXIT
+          package_name="java-paw-${tag}"
+          package_dir="$staging/$package_name"
+          mkdir -p "$package_dir"
+          cp "target/paw-java-${version}.jar" "$package_dir/java-paw.jar"
+          cp dist/build-info.txt "$package_dir/build-info.txt"
+          # Preserve macros/tutorial, its fixtures/helpers, and relative macro paths.
+          # Generated analysis output and macOS metadata do not belong in releases.
+          tar --exclude='*/output' --exclude='.DS_Store' -cf - \
+            macros examples docs tut.pdf README.md | tar -xf - -C "$package_dir"
+          tar -czf "dist/${package_name}.tar.gz" -C "$staging" "$package_name"
+          (cd dist && sha256sum ./*.jar ./*.tar.gz > SHA256SUMS)
+
+      - name: Smoke test examples from extracted release archive
+        env:
+          RELEASE_TAG: ${{ steps.package.outputs.tag }}
+        shell: bash
+        run: |
+          extracted=$(mktemp -d)
+          trap 'rm -rf "$extracted"' EXIT
+          tar -xzf "dist/java-paw-${RELEASE_TAG}.tar.gz" -C "$extracted"
+          cd "$extracted/java-paw-${RELEASE_TAG}"
+          java -Djava.awt.headless=true -jar java-paw.jar --motif --empty \
+            --macro examples/demo.kumac --snapshot smoke-demo.png
+          test -s smoke-demo.png
+          java -Djava.awt.headless=true -jar java-paw.jar --motif --empty \
+            --macro macros/tutorial/00_run_all.kumac --snapshot smoke-tutorial.png
+          test -s smoke-tutorial.png
 
       - name: Upload release files
         uses: actions/upload-artifact@v4
